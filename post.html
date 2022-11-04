@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Paichi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./assets/js/jwt-decode.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+</head>
+<!--Navigation-->
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html"><img src="assets/images/logo2.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse ml-4 pl-4" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="lostitem.html">Lost item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="founditem.html">Found item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="post.html">Post</a>
+                </li>
+                <li class="nav-item beforelogin">
+                    <a class="nav-link " href="registration.html">Registration</a>
+                </li>
+                <li class="nav-item beforelogin">
+                    <a class="nav-link " href="login.html">Login</a>
+                </li>
+
+                <li class="nav-item dropdown afterlogin">
+                    <a class="nav-link dropdown-toggle showUsername" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rojony
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item " href="profile.html">Profile</a>
+
+                        <a onclick="logOutMe()" class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" name="search_form" method="Get" action="/search.html">
+                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+
+
+    <!-- grid -->
+    <div style="margin-top: 80px"></div>
+    <!-- About section-->
+    <div class="container">
+        <nav aria-label="breadcrumb mt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Post</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- About section-->
+    
+      
+
+    <!--post page section-->
+    <form class="margin" enctype="multipart/form-data" onsubmit="doPost(event)" enctype="multipart/form-data">
+        <!-- <form class="margin" enctype="multipart/form-data" id="formElem"> -->
+        <div class="container">
+
+            <div class="row ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mt-4 pt-4 ">
+                    <h2 class="text-center mt-4 pt-4 ">Post your Lost OR Found Item </h2>
+
+                    <div class="cc-selector post-height">
+                        <input id="visa" type="radio" name="Type" value="Found" required />
+                        <label class="drinkcard-cc found" for="visa"></label>
+                        <input id="mastercard" type="radio" name="Type" value="Lost" />
+                        <label class="drinkcard-cc lost" for="mastercard"></label>
+                    </div>
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <!-- form -->
+        <div class="container fixed contact style">
+
+            <label for="fname">Enter occurrence location</label>
+            <input type="text" id="Location" name="Location" maxlength="100" minlength="2"
+                placeholder="Enter location..">
+
+            <label for="lname">Enter Mobile</label>
+            <input type="text" id="Mobile" name="Mobile" maxlength="100" minlength="2" placeholder="Your Mobile..">
+            <label for="lname">Title</label>
+            <input type="text" id="Title" name="Title" maxlength="200" minlength="2" placeholder="Short Title..">
+
+            <label for="subject">Describe</label>
+            <textarea id="Description" name="Description" maxlength="2000" minlength="10"
+                placeholder="Write something.." style="height:200px"></textarea>
+            <div class="form-group">
+                <label for="fname">Upload item photo</label>
+                <input type="file" class="form-control-file" id="Image" name="Image" accept="image/*">
+            </div>
+
+            <input type="submit" value="Submit">
+    </form>
+
+    
+
+    <h6 id="postSuccessMsg" class="text-success"></h6>
+    <h6 id="postFailedMsg" class="text-danger"></h6>
+    </div>
+    <!-- Footer Links -->
+    <footer class="page-footer font-small indigo color mt-4 pt-4">
+        
+
+        <!-- Footer Elements -->
+
+
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item icon-bar ">
+                <a class="btn-floating btn-fb facebook mx-1">
+                    <i class="fa fa-facebook-f"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item icon-bar">
+                <a class="btn-floating btn-tw  twitter mx-1">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+            </li>
+
+            <li class="list-inline-item icon-bar">
+                <a class="btn-floating btn-li linkedin mx-1">
+                    <i class="fa fa-linkedin"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item icon-bar">
+                <a class="btn-floating btn-dribbble mx-1 dribbble">
+                    <i class="fa fa-dribbble"> </i>
+                </a>
+            </li>
+        </ul>
+        <!-- Social buttons -->
+
+
+        <!-- Footer Elements -->
+
+
+
+
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+</body>
+
+</html>
